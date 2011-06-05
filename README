@@ -1,0 +1,15 @@
+* What is VTE?
+
+VTE is a library (libvte) implementing a terminal emulator widget for GTK+,
+and a minimal sample application (vte) using that.  Vte is mainly used in
+gnome-terminal, but can also be used to embed a console/terminal in games,
+editors, IDEs, etc.
+
+VTE supports Unicode and character set conversion, as well as emulating any
+terminal known to the system's terminfo database.
+
+* What is vteindic?
+
+vteindic is the extension to original VTE library for Indian Language support,
+i.e., currently upstream VTE code doesn't support complex script rendering.
+Current work is done with Devanagari script support. 
