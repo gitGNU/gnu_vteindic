@@ -2975,16 +2975,6 @@ _vte_terminal_insert_char(VteTerminal *terminal, gunichar c,
 	short no_halant = 0;
 
 	
-	/*if(exceptional_devanagari_case > 0){
-		if(c == 0x0902 ){
-		}	
-		else {
-			//if(screen->cursor_current.col != 0) {	
-				screen->cursor_current.col = exceptional_devanagari_case;
-				//exceptional_devanagari_case = 0;
-			//}
-		}		
-	}*/	
 	/* If we've enabled the special drawing set, map the characters to
 	 * Unicode. */
 	if (G_UNLIKELY (screen->alternate_charset)) {
@@ -3346,23 +3336,21 @@ done:
 	}
 
 	if(no_halant == state_one) {
-		exceptional_devanagari_case = (col 
+		screen->cursor_current.col = (col 
 				           + devanagari_locale[stored_char
 				           - start_devanagari_unicode].full_width
 			 	           + font_diff );
-		screen->cursor_current.col = exceptional_devanagari_case ;
 		halant_flag = 0,
 		no_of_columns_mov_cursor = 0;
 		no_halant = 0;
 	}
 	if(iscomplex_flag == state_one) {
 		if(prev_num_columns > 0) {
-			exceptional_devanagari_case = (col 
+			screen->cursor_current.col = (col 
 			                           + prev_num_columns + diff
 				                   + devanagari_locale[stored_char
 						   - start_devanagari_unicode].full_width 
 						   + font_diff );
-			screen->cursor_current.col = exceptional_devanagari_case ;
 			diff = 0;
 			prev_num_columns = 0;
 			no_of_columns_mov_cursor = 0;
